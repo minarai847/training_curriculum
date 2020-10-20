@@ -19,7 +19,7 @@ class CalendarsController < ApplicationController
   end
 
   def get_week
-    week_days = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)']
+    wdays = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)']
 
     # Dateオブジェクトは、日付を保持しています。下記のように`.today.day`とすると、今日の日付を取得できます。
     @todays_date = Date.today
@@ -39,18 +39,16 @@ class CalendarsController < ApplicationController
       if wday_num >= 7
         wday_num = wday_num - 7
       end
-      days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => today_plans, :wdays => wdays[(@todays_date+x).wday] }
-      # days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => today_plans, :wdays => wdays[wday_num] }
+      days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: today_plans, wdays: wdays[(@todays_date+x).wday] }
+      
 
       @week_days.push(days)
     end
   end
 end
 
-# 38行目に7以上の場合という条件式を記述
-# ハッシュロケットかシンボルかを統一させる
-# 配列に添字として当てる記述の修正
-# →全ての日付に（火）が表示できる
+
+
 
 
 
